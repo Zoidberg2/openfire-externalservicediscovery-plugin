@@ -306,19 +306,13 @@ public final class Service
             String username = asSecondsSinceEpoch; // The TURN server should accept usernames without an identifier-part.
 
             if ( user != null )
-            {
-                // Try to set the JID as a username part, if we can.
-                try
+
                 {
                     // Although RFC 5389 appears to allow for unescaped JIDs to be used as TURN usernames, problems have
                     // been reported (eg: https://github.com/versatica/JsSIP/issues/184)111
-                    username = asSecondsSinceEpoch + ":" + URLEncoder.encode( user.toBareJID(), "ASCII" );
+                    username = asSecondsSinceEpoch;
                 }
-                catch ( UnsupportedEncodingException e )
-                {
-                    Log.debug( "Unable to encode JID ''.", user.toBareJID(), e );
-                }
-            }
+
 
             // temporary-password = base64_encode(hmac-sha1(input = temporary-username, key = shared-secret))
             final String password;
